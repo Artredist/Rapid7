@@ -34,10 +34,11 @@ install_terraform:
       fi
 
 # Scanning the IaC files - make sure to choose a proper report name and report format
+# Also please make sure to enter your correct BaseURL!
 scan_with_mimics:
   stage: scan
   script:
-    - ./mimics scan "$CI_PROJECT_DIR" --api-key "$API_KEY" --base-url "https://sales-demo.divvycloud.com/" --no-verify --log-format json --report-formats all --report-name probe --save-report --no-fail --verbose
+    - ./mimics scan "$CI_PROJECT_DIR" --api-key "$API_KEY" --base-url "$BASE_URL" --no-verify --log-format json --report-formats all --report-name probe --save-report --no-fail --verbose
   dependencies:
     - install_mimics
     - install_terraform
